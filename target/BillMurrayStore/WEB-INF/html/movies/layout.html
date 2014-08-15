@@ -1,0 +1,100 @@
+
+<div class="alert alert-dismissable alert-danger" ng-show="error">
+	<button type="button" class="close" data-dismiss="alert"
+		ng-click="closeAlert()">x</button>
+	<strong>Oh snap!</strong> <a href="#" class="alert-link">{{errorMessage}}</a>,
+	please try again!.
+</div>
+
+<div class="jumbotron">
+
+	<div class="form-group">
+		<div class="input-group">
+			<span class="input-group-addon"></span> <input type="text"
+				ng-model="name" value="Name actor..." class="form-control">
+			<span class="input-group-btn">
+				<button class="btn btn-default" type="button"
+					ng-click="searchPerson(name)">Search Actor</button>
+			</span>
+		</div>
+	</div>
+
+	<table class="table table-striped table-hover" ng-hide="!actor.name">
+		<tbody>
+			<tr class="warning">
+				<td>
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<h4>Actor</h4>
+						</div>
+						<div class="panel-body">
+							<h5>{{actor.name}}</h5>
+							<img
+								ng-src="{{actor.profile_path}}"
+								ng-hide="!actor.name" />
+							<h6>Birthday: {{actor.birthday}}</h6>
+							<h6>Place of birth: {{actor.birthday}}</h6>	
+							<h6>Homepage: {{actor.birthday}}</h6>					
+						</div>
+						<div class="panel panel-primary">
+							  <div class="panel-heading">
+							    <h3 class="panel-title">Others similar actors</h3>
+							  </div>
+							  <div class="panel-body">
+							    <a class="panel-body" ng-repeat="actor in actorlist" ng-click="rechargeActor(actor)">{{actor.name}}</a>
+							  </div>
+							</div>
+					</div>
+				</td>
+				<td>
+				   <div class="panel panel-default">
+				   <div class="panel-heading">
+							<h4>Actor's movies</h4>
+						</div>
+						<div class="panel-body">
+					<table class="table table-striped table-hover ">
+  						<tbody>
+						    <tr
+								ng-repeat="movie in movies | startFrom:currentPage*pageSize | limitTo:pageSize"
+								ng-hide="!movies.length">
+						      <td><img ng-src="{{movie.poster_path}}" /></td>
+						      <td>
+						      
+						      		<div class="panel panel-warning">
+									  <div class="panel-heading">
+									    <h3 class="panel-title">{{movie.title}}</h3>
+									  </div>
+									  <div class="panel-body">
+									  	<h6>Release Date: {{movie.release_date}}</h6>
+									  	<h6>Character:    {{movie.character}}</h6>
+									    
+									  </div>
+									</div>
+						      </td>
+						    </tr>	
+						 </tbody>
+					</table>
+					<div class="btn-group btn-group-justified">
+					  <a ng-disabled="currentPage == 0"
+							ng-click="currentPage=currentPage-1" class="btn btn-primary">Previous</a>
+					  <a class="btn btn-default">{{currentPage+1}}/{{numberOfPages()}}</a>
+					  <a ng-disabled="currentPage >= movies.length/pageSize - 1"
+							ng-click="currentPage=currentPage+1" class="btn btn-primary">Next</a>
+					</div>
+					</div>
+					</div>
+				</td>
+				
+			</tr>
+		</tbody>
+	</table>
+	
+	<p class="text-primary" ng-show="!actor.name">To begin write the name of your favorite actor!.</p>
+	
+</div>
+<div class="progress progress-striped active" ng-show="loading">
+  <div class="progress-bar" style="width: 95%"></div>
+</div>
+
+
+
