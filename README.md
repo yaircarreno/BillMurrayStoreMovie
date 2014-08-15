@@ -1,16 +1,15 @@
-spring-mvc-angularjs
+Bill Murray Store Movie
 ====================
 
-A simple application to demonstrate how to configure angularjs with Spring MVC
+This solution uses the Javascript MVC framework Angular JS/Spring MVC to integrate with HTML5, PHP and other view technologies, also uses the bootstrap like Bootswatch CSS.
+This Web App is Hybrid and can be used in mobile and browser.
 
-The application demonstrates how to configure Spring MVC with AngularJS and Velocity.
+The methods used of The Movie Data Base API:
+	/search/person
+	/person/{id}
+	/person/{id}/movie_credits
 
-It uses the AngularJS-Seed with some modifications to allow Spring MVC load the HTML. Also integrated Velocity in case it is needed to pass some values from the spring mvc controller into the partials or index.html file.
+If the image is not available It's used imagenotavailable.png of resource file.
 
-I also included the bootstrap library for a better UI.
-
-RUN: 
-
-mvn tomcat:run
-
-Then open the URL: http://localhost:8080/AngularSpringApp
+To consume the Rest service it's used RestTemplate, the main controller is MovieController.
+It was necessary used a comparator to order by dates.
